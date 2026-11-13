@@ -12,6 +12,7 @@
 #   - EMERGÊNCIA: leve o mouse ao canto superior esquerdo da tela.
 
 import time
+import os
 
 import pyautogui as pa
 import pyperclip
@@ -82,8 +83,9 @@ def achar(imagem, regiao=None, confianca=None):
     """Procura a imagem na tela UMA vez. Retorna a posição ou None."""
     if confianca is None:
         confianca = CONFIANCA
+    caminho = os.path.join(os.path.dirname(os.path.abspath(__file__)), "imagens", imagem)
     try:
-        return pa.locateOnScreen(imagem, region=regiao, confidence=confianca)
+        return pa.locateOnScreen(caminho, region=regiao, confidence=confianca)
     except pa.ImageNotFoundException:
         return None
 
